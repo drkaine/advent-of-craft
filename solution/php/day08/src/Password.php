@@ -6,6 +6,16 @@ namespace App;
 
 class Password
 {
+    private int $minimumLenght = 8;
+
+    private string $regexLowercaseLetter = '/[a-z]/';
+
+    private string $regexCapitalLetter = '/[A-Z]/';
+
+    private string $regexNumber = '/[0-9]/';
+
+    private string $regexSpecialCharacter = '/[.*#@\$%&]/';
+
     public function isValid(string $password): bool
     {
         $haveTheRequireLenght = $this->haveTheRequireLenght($password);
@@ -14,19 +24,19 @@ class Password
             return false;
         }
 
-        if(preg_match('/[a-z]/', $password) !== 1){
+        if(preg_match($this->regexLowercaseLetter, $password) !== 1){
             return false;
         }
 
-        if(preg_match('/[A-Z]/', $password) !== 1){
+        if(preg_match($this->regexCapitalLetter, $password) !== 1){
             return false;
         }
 
-        if(preg_match('/[0-9]/', $password) !== 1){
+        if(preg_match($this->regexNumber, $password) !== 1){
             return false;
         }
 
-        if(preg_match('/[.*#@\$%&]/', $password) !== 1){
+        if(preg_match($this->regexSpecialCharacter, $password) !== 1){
             return false;
         }
 
@@ -41,7 +51,7 @@ class Password
 
     private function haveTheRequireLenght(string $password): bool
     {
-        return strlen($password) < 8;
+        return strlen($password) < $this->minimumLenght;
     }
 
     private function verifyNonAuthorizedCharacter(string $password): bool
