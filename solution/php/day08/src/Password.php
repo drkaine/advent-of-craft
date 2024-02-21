@@ -28,6 +28,17 @@ class Password
             return false;
         }
 
+        $haveUnauthorizedCharacter = $this->verifyNonAuthorizedCharacter($password);
+
+        if($haveUnauthorizedCharacter) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function verifyNonAuthorizedCharacter(string $password): bool
+    {
         $passwordTest = preg_replace('/[a-z]/', '', $password);
 
         $passwordTest = preg_replace('/[A-Z]/', '', $passwordTest);
@@ -36,10 +47,6 @@ class Password
 
         $passwordTest = preg_replace('/[.*#@\$%&]/', '', $passwordTest);
 
-        if($passwordTest !== ''){
-            return false;
-        }
-
-        return true;
+        return $passwordTest !== '';
     }
 }
