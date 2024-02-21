@@ -37,7 +37,7 @@ class Password
         if($this->haveSpecialCharacter($password)){
             return false;
         }
-        
+
         if($this->verifyNonAuthorizedCharacter($password)) {
             return false;
         }
@@ -72,13 +72,13 @@ class Password
 
     private function verifyNonAuthorizedCharacter(string $password): bool
     {
-        $passwordTest = preg_replace('/[a-z]/', '', $password);
+        $passwordTest = preg_replace($this->regexLowercaseLetter, '', $password);
 
-        $passwordTest = preg_replace('/[A-Z]/', '', $passwordTest);
+        $passwordTest = preg_replace($this->regexCapitalLetter, '', $passwordTest);
 
-        $passwordTest = preg_replace('/[0-9]/', '', $passwordTest);
+        $passwordTest = preg_replace($this->regexNumber, '', $passwordTest);
 
-        $passwordTest = preg_replace('/[.*#@\$%&]/', '', $passwordTest);
+        $passwordTest = preg_replace($this->regexSpecialCharacter, '', $passwordTest);
 
         return $passwordTest !== '';
     }
