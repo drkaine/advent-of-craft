@@ -29,6 +29,10 @@ describe('Password need to return', function (): void {
 		expect($this->password->isValid('123456Aa'))->toBe(false);
 	});
 
+    test('false if he have a character not in this list . * # @ $ % &', function (): void {
+		expect($this->password->isValid('123456.Aa '))->toBe(false);
+	});
+
     test('true if it\'s a valid password', function (): void {
 		expect($this->password->isValid('123456.Aa'))->toBe(true);
 	});

@@ -28,6 +28,18 @@ class Password
             return false;
         }
 
+        $passwordTest = preg_replace('/[a-z]/', '', $password);
+
+        $passwordTest = preg_replace('/[A-Z]/', '', $passwordTest);
+
+        $passwordTest = preg_replace('/[0-9]/', '', $passwordTest);
+
+        $passwordTest = preg_replace('/[.*#@\$%&]/', '', $passwordTest);
+
+        if($passwordTest !== ''){
+            return false;
+        }
+
         return true;
     }
 }
