@@ -8,7 +8,9 @@ class Password
 {
     public function isValid(string $password): bool
     {
-        if(strlen($password) < 8){
+        $haveTheRequireLenght = $this->haveTheRequireLenght($password);
+
+        if($haveTheRequireLenght){
             return false;
         }
 
@@ -35,6 +37,11 @@ class Password
         }
 
         return true;
+    }
+
+    private function haveTheRequireLenght(string $password): bool
+    {
+        return strlen($password) < 8;
     }
 
     private function verifyNonAuthorizedCharacter(string $password): bool
