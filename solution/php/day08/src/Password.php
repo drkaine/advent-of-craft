@@ -26,7 +26,7 @@ class Password
             return false;
         }
 
-        if(preg_match($this->regexCapitalLetter, $password) !== 1){
+        if($this->haveCapitalLetter($password)){
             return false;
         }
 
@@ -55,6 +55,11 @@ class Password
     private function haveLowercaseLetter(string $password): bool
     {
         return preg_match($this->regexLowercaseLetter, $password) !== 1;
+    }
+
+    private function haveCapitalLetter(string $password): bool
+    {
+        return preg_match($this->regexCapitalLetter, $password) !== 1;
     }
 
     private function verifyNonAuthorizedCharacter(string $password): bool
