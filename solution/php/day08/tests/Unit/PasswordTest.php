@@ -24,4 +24,8 @@ describe('Password need to return', function (): void {
     test('false if he have less than 1 number', function (): void {
 		expect($this->password->isValid('bbbbb.Aa'))->toBe(false);
 	});
+
+    test('false if he have less than a special character in this list . * # @ $ % &', function (): void {
+		expect($this->password->isValid('123456Aa'))->toBe(false);
+	});
 });

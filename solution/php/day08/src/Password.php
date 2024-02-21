@@ -23,5 +23,9 @@ class Password
         if(preg_match('/[0-9]/', $password) !== 1){
             return false;
         }
+
+        if(preg_match('/[.*#@\$%&]/', $password) !== 1){
+            return false;
+        }
     }
 }
