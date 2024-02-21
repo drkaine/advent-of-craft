@@ -11,5 +11,9 @@ class Password
         if(strlen($password) < 8){
             return false;
         }
+
+        if(preg_match('/[a-z]/', $password) !== 1){
+            return false;
+        }
     }
 }
