@@ -12,19 +12,7 @@ class Password
             return false;
         }
 
-        if(preg_match('/[a-z]/', $password) !== 1){
-            return false;
-        }
-
-        if(preg_match('/[A-Z]/', $password) !== 1){
-            return false;
-        }
-
-        if(preg_match('/[0-9]/', $password) !== 1){
-            return false;
-        }
-
-        if(preg_match('/[.*#@\$%&]/', $password) !== 1){
+        if(preg_match('/[a-z][A-Z][.*#@\$%&][0-9]/', $password) !== 1){
             return false;
         }
     }
