@@ -30,17 +30,15 @@ class Password
             return false;
         }
 
-        if(preg_match($this->regexNumber, $password) !== 1){
+        if($this->haveNumber($password)){
             return false;
         }
 
-        if(preg_match($this->regexSpecialCharacter, $password) !== 1){
+        if($this->haveSpecialCharacter($password)){
             return false;
         }
-
-        $haveUnauthorizedCharacter = $this->verifyNonAuthorizedCharacter($password);
-
-        if($haveUnauthorizedCharacter) {
+        
+        if($this->verifyNonAuthorizedCharacter($password)) {
             return false;
         }
 
@@ -60,6 +58,16 @@ class Password
     private function haveCapitalLetter(string $password): bool
     {
         return preg_match($this->regexCapitalLetter, $password) !== 1;
+    }
+
+    private function haveNumber(string $password): bool
+    {
+        return preg_match($this->regexNumber, $password) !== 1;
+    }
+
+    private function haveSpecialCharacter(string $password): bool
+    {
+        return preg_match($this->regexSpecialCharacter, $password) !== 1;
     }
 
     private function verifyNonAuthorizedCharacter(string $password): bool
