@@ -16,4 +16,8 @@ describe('Password need to return', function (): void {
     test('false if he have less than 1 lowercase letter', function (): void {
 		expect($this->password->isValid('123456.A'))->toBe(false);
 	});
+
+    test('false if he have less than 1 capital letter', function (): void {
+		expect($this->password->isValid('123456.a'))->toBe(false);
+	});
 });
