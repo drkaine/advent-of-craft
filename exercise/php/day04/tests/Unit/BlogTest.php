@@ -21,23 +21,17 @@ beforeEach(function (): void {
 	$this->article->addComment($this->text, $this->author);
 });
 
-describe('A comment', function (): void {
-	test('should have the text gived on this creation', function (): void {
+	test('A comment should be valid', function (): void {
 		$comments = $this->article->getComments()[$this->firstComment]->text;
 		expect($comments)->toBe($this->text);
-	});
 
-	test('should have the author gived on this creation', function (): void {
 		$author = $this->article->getComments()[$this->firstComment]->author;
 		expect($author)->toBe($this->author);
-	});
 
-	test('should have the date of the day of his creation', function (): void {
 		$firstCommentCreationDate = $this->article->getComments()[$this->firstComment]->creationDate;
 
 		expect($firstCommentCreationDate->format($this->format))->toBe($this->date->format($this->format));
 	});
-});
 
 describe('Article in a blog', function (): void {
 	test('should have add comment', function (): void {
