@@ -22,7 +22,7 @@ class PopulationTesting
 
 	public function formatPopulation(array $population): string
 	{
-		$getResponseArray = array_map([$this, 'getPrintResume'], $population);
+		$getResponseArray = array_map([$this, 'formatPersonWithTheirPets'], $population);
 
 		$getResponseString = implode('\\n', $getResponseArray);
 
@@ -44,14 +44,14 @@ class PopulationTesting
 		return 0;
 	}
 
-	private function getPrintResume(Person $person): string
+	private function formatPersonWithTheirPets(Person $person): string
 	{
-		$response = $this->printOwnersName($person);
+		$response = $this->formatOwnersName($person);
 
 		if (count($person->pets) > 0) {
 			$response .= ' who owns : ';
 
-			$getPetNameArray = array_map([$this, 'printPetsName'], $person->pets);
+			$getPetNameArray = array_map([$this, 'formatPetsName'], $person->pets);
 
 			$getPetNameString = implode('', $getPetNameArray);
 
@@ -61,12 +61,12 @@ class PopulationTesting
 		return $response;
 	}
 
-	private function printOwnersName(Person $person): string
+	private function formatOwnersName(Person $person): string
 	{
 		return $person->firstName . ' ' . $person->lastName;
 	}
 
-	private function printPetsName(Pet $pet): string
+	private function formatPetsName(Pet $pet): string
 	{
 		return $pet->name . ' ';
 	}
