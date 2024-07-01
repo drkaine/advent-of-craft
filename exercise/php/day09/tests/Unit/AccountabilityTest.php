@@ -18,7 +18,7 @@ describe('Client Tests', function (): void {
 		$statement = $this->client->toStatement();
 
 		expect($this->client->getTotalAmount())->toEqualWithDelta(130.97, 2);
-		expect(trim($statement))->toEqual(
+		expect(trim($statement))->toBe(
 			"Tenet Deluxe Edition for 45.99€\n" .
 			"Inception for 30.50€\n" .
 			"The Dark Knight for 30.50€\n" .
